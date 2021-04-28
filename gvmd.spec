@@ -87,8 +87,4 @@ psql -d gvmd -c 'grant dba to gvm;'
 psql -d gvmd -c 'create extension "uuid-ossp";'
 psql -d gvmd -c 'create extension "pgcrypto";'
 
-%postun
-#!/bin/bash
-userdel -fr gvm
-
 %changelog
