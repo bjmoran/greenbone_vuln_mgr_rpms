@@ -1,5 +1,5 @@
 Name:    gvmd
-Version: 20.8.0
+Version: 20.8.1
 Release: 1%{?dist}
 Summary: Greenbone Vulnerability Manager
 
@@ -13,7 +13,7 @@ BuildRequires: libuuid-devel perl-XML-Twig postgresql-server-devel xmltoman
 BuildRequires: zlib-devel
 
 Requires: glib2 glibc gnutls gnutls-utils gpgme gvm-libs libical libpq libuuid
-Requires: openvas postgresql-contrib postgresql-server zlib
+Requires: openvas-scanner postgresql-contrib postgresql-server zlib
 
 %description
 The Greenbone Vulnerability Manager is the central management service between security scanners and the user clients.

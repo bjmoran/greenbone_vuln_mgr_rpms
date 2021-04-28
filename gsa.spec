@@ -1,5 +1,5 @@
 Name:    gsa
-Version: 20.8.0
+Version: 20.8.1
 Release: 1%{?dist}
 Summary: Greenbone Security Assistant
 

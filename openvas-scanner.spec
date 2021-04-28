@@ -1,5 +1,5 @@
-Name:    openvas
-Version: 20.8.0
+Name:    openvas-scanner
+Version: 20.8.1
 Release: 1%{?dist}
 Summary: Open Vulnerability Assessment Scanner
 
