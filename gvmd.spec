@@ -1,11 +1,12 @@
 Name:    gvmd
-Version: 20.8.1
+Version: 21.4.4
 Release: 1%{?dist}
 Summary: Greenbone Vulnerability Manager
 
 License: GPLv3
 Source0: https://github.com/greenbone/%{name}/archive/v%{version}.tar.gz
-Patch0: rundir.patch
+# download sources with spectool:
+# spectool -g -R gvmd.spec
 
 BuildRequires: cmake doxygen gcc make glib2-devel glibc-headers gnutls-devel
 BuildRequires: gpgme-devel graphviz gvm-libs libical-devel libpq-devel
@@ -20,7 +21,6 @@ The Greenbone Vulnerability Manager is the central management service between se
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 sed -i 's|postgresql/||' src/sql_pg.c
@@ -34,14 +34,13 @@ CFLAGS='-O2 -g -pipe -Wall -Wno-error=maybe-uninitialized -Wno-error=stringop-tr
 cd build && %make_install
 
 %files
-/etc/default/gvmd
 /etc/gvm/gvmd_log.conf
 /etc/gvm/pwpolicy.conf
 /etc/logrotate.d/gvmd
+/lib/systemd/system/gvmd.service
 /usr/bin/gvm-manage-certs
 /usr/lib/libgvm-pg-server.so
 /usr/lib/libgvm-pg-server.so.*
-/usr/lib/systemd/system/gvmd.service
 /usr/sbin/greenbone-certdata-sync
 /usr/sbin/greenbone-feed-sync
 /usr/sbin/greenbone-scapdata-sync
@@ -50,8 +49,9 @@ cd build && %make_install
 /usr/share/doc/gvm/html/gmp.html
 /usr/share/gvm/cert/cert_bund_getbyname.xsl
 /usr/share/gvm/cert/dfn_cert_getbyname.xsl
-/usr/share/gvm/gvm-lsc-deb-creator.sh
-/usr/share/gvm/gvm-lsc-rpm-creator.sh
+/usr/share/gvm/gvm-lsc-deb-creator
+/usr/share/gvm/gvm-lsc-exe-creator
+/usr/share/gvm/gvm-lsc-rpm-creator
 /usr/share/gvm/gvmd/*
 /usr/share/gvm/scap/cpe_getbyname.xsl
 /usr/share/gvm/scap/cve_getbyname.xsl
@@ -88,3 +88,9 @@ psql -d gvmd -c 'create extension "uuid-ossp";'
 psql -d gvmd -c 'create extension "pgcrypto";'
 
 %changelog
+* Wed Dec 15 2021 BM
+- updated for 21.4.4.
+- patch for systemd unit file no longer required
+- /etc/default/gvmd no longer packaged
+- systemd unit file now in /lib, rather than /usr/lib
+- packaging scripts moved

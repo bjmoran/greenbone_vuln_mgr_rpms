@@ -1,18 +1,20 @@
 Name:    gvm-libs
-Version: 20.8.1
+Version: 21.4.3
 Release: 1%{?dist}
 Summary: GVM Libraries
 
 License: GPLv3
 Source0: https://github.com/greenbone/%{name}/archive/v%{version}.tar.gz
+# download sources with spectool:
+# spectool -g -R gvm-libs.spec
 
 BuildRequires: cmake doxygen gcc glib2-devel glibc-headers gnutls-devel
 BuildRequires: gpgme-devel graphviz hiredis-devel libgcrypt-devel
-BuildRequires: libpcap-devel libssh-devel libuuid-devel libxml2-devel
-BuildRequires: make openldap-devel radcli-devel zlib-devel
+BuildRequires: libnet-devel libpcap-devel libssh-devel libuuid-devel
+BuildRequires: libxml2-devel make openldap-devel radcli-devel zlib-devel
 
-Requires: cyrus-sasl glib2 glibc gnutls gpgme hiredis libgcrypt libpcap
-Requires: libssh libuuid libxml2 openldap radcli zlib
+Requires: cyrus-sasl glib2 glibc gnutls gpgme hiredis libgcrypt libnet
+Requires: libpcap libssh libuuid libxml2 openldap radcli zlib
 
 %description
 GVM Libraries.
@@ -47,6 +49,7 @@ cd build && %make_install
 /usr/include/gvm/base/strings.h
 /usr/include/gvm/base/version.h
 /usr/include/gvm/boreas/alivedetection.h
+/usr/include/gvm/boreas/arp.h
 /usr/include/gvm/boreas/boreas_error.h
 /usr/include/gvm/boreas/boreas_io.h
 /usr/include/gvm/boreas/cli.h
@@ -62,6 +65,7 @@ cd build && %make_install
 /usr/include/gvm/util/kb.h
 /usr/include/gvm/util/ldaputils.h
 /usr/include/gvm/util/nvticache.h
+/usr/include/gvm/util/passwordbasedauthentication.h
 /usr/include/gvm/util/radiusutils.h
 /usr/include/gvm/util/serverutils.h
 /usr/include/gvm/util/sshutils.h
@@ -84,3 +88,7 @@ cd build && %make_install
 /usr/lib64/pkgconfig/libgvm_util.pc
 
 %changelog
+* Wed Dec 15 2021 BM
+- updated for 21.4.3.
+- now requires libnet-devel.
+- two additional header files installed.

@@ -1,11 +1,12 @@
 Name:    gsa
-Version: 20.8.1
+Version: 21.4.3
 Release: 1%{?dist}
 Summary: Greenbone Security Assistant
 
 License: GPLv3
 Source0: https://github.com/greenbone/%{name}/archive/v%{version}.tar.gz
-Patch0: gsad-configs.patch
+# download sources with spectool:
+# spectool -g -R gsa.spec
 
 BuildRequires: cmake doxygen gcc gcc-c++ glib2-devel glibc-headers gnutls-devel
 BuildRequires: graphviz gvm-libs libgcrypt-devel libmicrohttpd-devel
@@ -19,7 +20,6 @@ The Greenbone Security Assistant is the web interface for the Greenbone Security
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 mkdir build && \
@@ -32,12 +32,16 @@ CFLAGS='-O2 -g -pipe -Wall -Wno-error=maybe-uninitialized -Wno-error=stringop-tr
 cd build && %make_install
 
 %files
-/etc/default/gsad
 /etc/gvm/gsad_log.conf
 /etc/logrotate.d/gsad
-/usr/lib/systemd/system/gsad.service
+/lib/systemd/system/gsad.service
 /usr/sbin/gsad
 /usr/share/gvm/gsad/web/*
 /usr/share/man/man8/gsad.8.gz
 
 %changelog
+* Wed Dec 15 2021 BM
+- updated for 21.4.3.
+- patch no longer required
+- /etc/default/gsa no longer packaged
+- systemd unit file now in /lib, rather than /usr/lib

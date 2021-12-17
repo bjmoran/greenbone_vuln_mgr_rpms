@@ -1,10 +1,12 @@
 Name:    openvas-scanner
-Version: 20.8.1
+Version: 21.4.3
 Release: 1%{?dist}
 Summary: Open Vulnerability Assessment Scanner
 
 License: GPLv3
 Source0: https://github.com/greenbone/%{name}/archive/v%{version}.tar.gz
+# download sources with spectool:
+# spectool -g -R openvas-scanner.spec
 
 BuildRequires: bison cmake doxygen gcc glib2-devel glibc-headers gnutls-devel
 BuildRequires: gpgme-devel gvm-libs graphviz libgcrypt-devel libksba-devel
@@ -46,3 +48,5 @@ cd build && %make_install
 /var/lib/openvas
 
 %changelog
+* Wed Dec 15 2021 BM
+- updated for 21.4.3.
