@@ -1,5 +1,5 @@
 Name:    gvmd
-Version: 21.4.4
+Version: 21.4.5
 Release: 1%{?dist}
 Summary: Greenbone Vulnerability Manager
 
@@ -88,6 +88,9 @@ psql -d gvmd -c 'create extension "uuid-ossp";'
 psql -d gvmd -c 'create extension "pgcrypto";'
 
 %changelog
+* Thu Apr 07 2022 BM
+- updated for 21.4.5.
+
 * Wed Dec 15 2021 BM
 - updated for 21.4.4.
 - patch for systemd unit file no longer required

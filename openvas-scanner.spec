@@ -1,5 +1,5 @@
 Name:    openvas-scanner
-Version: 21.4.3
+Version: 21.4.4
 Release: 1%{?dist}
 Summary: Open Vulnerability Assessment Scanner
 
@@ -48,5 +48,8 @@ cd build && %make_install
 /var/lib/openvas
 
 %changelog
+* Thu Apr 07 2022 BM
+- updated for 21.4.4.
+
 * Wed Dec 15 2021 BM
 - updated for 21.4.3.

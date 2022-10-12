@@ -1,5 +1,5 @@
 Name:    gvm-libs
-Version: 21.4.3
+Version: 21.4.4
 Release: 1%{?dist}
 Summary: GVM Libraries
 
@@ -88,6 +88,9 @@ cd build && %make_install
 /usr/lib64/pkgconfig/libgvm_util.pc
 
 %changelog
+* Thu Apr 07 2022 BM
+- updated for 21.4.4.
+
 * Wed Dec 15 2021 BM
 - updated for 21.4.3.
 - now requires libnet-devel.
